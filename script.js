@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return false;
         }
 
-        switch (pieceType) {
+        switch (pieceColor) {
             case `${pieceColor}-pawn`:
                 const direction = pieceColor === 'white' ? -1 : 1; // direção do movimento
                 const startingRow = pieceColor === 'white' ? 6 : 1; //linha inicial para avanço de 2 casas
@@ -300,16 +300,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             for (let i = start + 1; i < end; i++) {
                 const cell = document.querySelector(`.cell[data-index="${startRowIndex * 8 + i}"]`);
-                const blockingPiece = cell.querySelector('.piece');
-                if(blockingPiece) {
-
-                    if(blockingPiece.dataset.color === pieceColor) {
-                        return false;
-                    }
-                    return true;
-                }
-
-                if (cell.querySelector('.piece')) {
+                
+                if(cell.querySelector('.piece')) {
                     return true;
                 }
                 
@@ -319,15 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const end = Math.max(startRowIndex, endRowIndex);
             for (let i = start + 1; i < end; i++) {
                 const cell = document.querySelector(`.cell[data-index="${i * 8 + startColIndex}"]`);
-                const blockingPiece = cell.querySelector('.piece');
-                if(blockingPiece) {
-                    if(blockingPiece.dataset.color === pieceColor) {
-                        return false;
-                    }
-                    return false;
-                }
-
-                if (cell.querySelector('.piece')) {
+                
+                if(cell.querySelector('.piece')) {
                     return true;
                 }
             }
